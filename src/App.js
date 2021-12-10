@@ -6,9 +6,9 @@ import Box, { BACKGROUND, PLAYER, BALL } from './components/box.jsx';
 const ROW_SIZE = 10
 const COL_SIZE = 20
 
-/* BOARD */
-const PLAYER_BOARD_SIZE = 3
-const BOARD_EDGE_SPACE = 1;
+/* paddle */
+const PADDLE_BOARD_SIZE = 3;
+const PADDLE_EDGE_SPACE = 1;
 
 /* buttons */
 const PLAYER_UP   = 38  // up arrow
@@ -51,11 +51,11 @@ const style = {
 
 
 const InitialState = () => {
-    const paddle = [...Array(PLAYER_BOARD_SIZE)].map((_, pos) => pos);
+    const paddle = [...Array(PADDLE_BOARD_SIZE)].map((_, pos) => pos);
     return {
         /* board */
-        player: paddle.map(x => (x  * COL_SIZE) + BOARD_EDGE_SPACE),
-        opponent: paddle.map(x => ((x+1) * COL_SIZE)-(BOARD_EDGE_SPACE+1)),
+        player: paddle.map(x => (x  * COL_SIZE) + PADDLE_EDGE_SPACE),
+        opponent: paddle.map(x => ((x+1) * COL_SIZE)-(PADDLE_EDGE_SPACE+1)),
         ball: Math.round((ROW_SIZE * COL_SIZE)/2)+ ROW_SIZE,
         /* ball */
         ballSpeed: 100,
@@ -82,7 +82,7 @@ class App extends React.Component {
     })
 
     moveBoard = (playerBoard, isUp) => {
-        const playerEdge = isUp? playerBoard[0]: playerBoard[PLAYER_BOARD_SIZE-1];
+        const playerEdge = isUp? playerBoard[0]: playerBoard[PADDLE_BOARD_SIZE-1];
 
         if (!this.touchingEdge(playerEdge)) {
             const deltaY =  (isUp ? -COL_SIZE : COL_SIZE);
@@ -150,9 +150,9 @@ class App extends React.Component {
     }
 
     touchingPaddleEdge = (pos) => this.state.player[0] === pos ||
-                                this.state.player[PLAYER_BOARD_SIZE -1] === pos ||
+                                this.state.player[PADDLE_BOARD_SIZE -1] === pos ||
                                 this.state.opponent[0] === pos ||
-                                this.state.opponent[PLAYER_BOARD_SIZE -1] === pos
+                                this.state.opponent[PADDLE_BOARD_SIZE -1] === pos
 
     bounceBall = () => {
         const newState = this.state.ball + this.state.deltaY+this.state.deltaX;
@@ -229,7 +229,6 @@ class App extends React.Component {
 
             </div>
             <h3> {"press up and down to move"} </h3>
-
         </div>
         )
     }
