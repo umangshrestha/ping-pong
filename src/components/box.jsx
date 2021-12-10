@@ -48,6 +48,8 @@ const getStyle = (val) => {
     }
 }
 
-const Box = (props) =><div style={backgroundStyle}>  <div style={getStyle(props.name)} />
-</div>
+const Box = (props) => <div style={backgroundStyle}> 
+                        <div style={getStyle(props.name)} /> 
+                    </div>
+
 export default Box;
