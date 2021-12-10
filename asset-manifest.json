@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/gh-pages/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/gh-pages/static/js/main.d7eb9222.chunk.js",
-    "main.js.map": "/gh-pages/static/js/main.d7eb9222.chunk.js.map",
-    "runtime-main.js": "/gh-pages/static/js/runtime-main.28aea91b.js",
-    "runtime-main.js.map": "/gh-pages/static/js/runtime-main.28aea91b.js.map",
-    "static/js/2.ce74096c.chunk.js": "/gh-pages/static/js/2.ce74096c.chunk.js",
-    "static/js/2.ce74096c.chunk.js.map": "/gh-pages/static/js/2.ce74096c.chunk.js.map",
-    "static/js/3.3a344492.chunk.js": "/gh-pages/static/js/3.3a344492.chunk.js",
-    "static/js/3.3a344492.chunk.js.map": "/gh-pages/static/js/3.3a344492.chunk.js.map",
-    "index.html": "/gh-pages/index.html",
-    "precache-manifest.2849f541f7a226243e7b25006776611f.js": "/gh-pages/precache-manifest.2849f541f7a226243e7b25006776611f.js",
-    "service-worker.js": "/gh-pages/service-worker.js",
-    "static/css/main.5ecd60fb.chunk.css.map": "/gh-pages/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.ce74096c.chunk.js.LICENSE.txt": "/gh-pages/static/js/2.ce74096c.chunk.js.LICENSE.txt"
+    "main.css": "/ping-pong/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/ping-pong/static/js/main.d7eb9222.chunk.js",
+    "main.js.map": "/ping-pong/static/js/main.d7eb9222.chunk.js.map",
+    "runtime-main.js": "/ping-pong/static/js/runtime-main.b5a50a74.js",
+    "runtime-main.js.map": "/ping-pong/static/js/runtime-main.b5a50a74.js.map",
+    "static/js/2.ce74096c.chunk.js": "/ping-pong/static/js/2.ce74096c.chunk.js",
+    "static/js/2.ce74096c.chunk.js.map": "/ping-pong/static/js/2.ce74096c.chunk.js.map",
+    "static/js/3.3a344492.chunk.js": "/ping-pong/static/js/3.3a344492.chunk.js",
+    "static/js/3.3a344492.chunk.js.map": "/ping-pong/static/js/3.3a344492.chunk.js.map",
+    "index.html": "/ping-pong/index.html",
+    "precache-manifest.e10d12865b914750d8af50ddfde402db.js": "/ping-pong/precache-manifest.e10d12865b914750d8af50ddfde402db.js",
+    "service-worker.js": "/ping-pong/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/ping-pong/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.ce74096c.chunk.js.LICENSE.txt": "/ping-pong/static/js/2.ce74096c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.28aea91b.js",
+    "static/js/runtime-main.b5a50a74.js",
     "static/js/2.ce74096c.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
     "static/js/main.d7eb9222.chunk.js"
