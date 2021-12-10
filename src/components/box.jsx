@@ -34,7 +34,9 @@ const ballStyle = {
     backgroundColor: "yellow",
     justifyContent: "center",
     borderRadius: "100%",
-    color:"white"
+    color:"white",
+    zIndex: "10",
+    position: 'relative'
 }
 
 /* function to select style */

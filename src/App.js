@@ -30,7 +30,11 @@ const outer = {
     Text: "100px",
     padding: "10px"
 }
-
+const dividerStyle = {
+    marginLeft: "50px",
+    fontSize: "50px",
+    color: "white"
+}
 
 const score = {
     marginLeft: "100px",
@@ -47,11 +51,11 @@ const style = {
 
 
 const InitialState = () => {
-    const board = [...Array(PLAYER_BOARD_SIZE)].map((_, pos) => pos);
+    const paddle = [...Array(PLAYER_BOARD_SIZE)].map((_, pos) => pos);
     return {
         /* board */
-        player: board.map(x => (x  * COL_SIZE) + BOARD_EDGE_SPACE),
-        opponent: board.map(x => ((x+1) * COL_SIZE)-(BOARD_EDGE_SPACE+1)),
+        player: paddle.map(x => (x  * COL_SIZE) + BOARD_EDGE_SPACE),
+        opponent: paddle.map(x => ((x+1) * COL_SIZE)-(BOARD_EDGE_SPACE+1)),
         ball: Math.round((ROW_SIZE * COL_SIZE)/2)+ ROW_SIZE,
         /* ball */
         ballSpeed: 100,
@@ -131,7 +135,7 @@ class App extends React.Component {
     
     touchingEdge = (pos) => (0 <= pos && pos < COL_SIZE) || (COL_SIZE*(ROW_SIZE-1) <= pos && pos < COL_SIZE * ROW_SIZE) 
 
-    touchingBoard = (pos) => {
+    touchingPaddle = (pos) => {
         return (this.state.player.indexOf(pos) !== -1) || 
             (this.state.opponent.indexOf(pos) !== -1) ||
             this.state[(this.state.deltaX === -1) ? "player":"opponent"].indexOf(pos+this.state.deltaX) !== -1;
@@ -145,13 +149,22 @@ class App extends React.Component {
             this.setState({opponentDir: !this.state.opponentDir});
     }
 
+    touchingPaddleEdge = (pos) => this.state.player[0] === pos ||
+                                this.state.player[PLAYER_BOARD_SIZE -1] === pos ||
+                                this.state.opponent[0] === pos ||
+                                this.state.opponent[PLAYER_BOARD_SIZE -1] === pos
+
     bounceBall = () => {
         const newState = this.state.ball + this.state.deltaY+this.state.deltaX;
         if (this.touchingEdge(newState)) {
             this.setState({deltaY: -this.state.deltaY})
         } 
 
-        if (this.touchingBoard(newState)) {
+        if (this.touchingPaddleEdge(newState)) {
+            this.setState({deltaY: -this.state.deltaY}) 
+        }
+
+        if (this.touchingPaddle(newState)) {
             this.setState({deltaX: -this.state.deltaX}) 
         } 
         
@@ -204,12 +217,16 @@ class App extends React.Component {
             return <Box key={pos} k={pos} name={val} />;
         })
 
+        const divider = [...Array(ROW_SIZE/2+2)].map(_=> <div>{"|"}</div>);
         return (
         <div style={outer}>
             <h1> {"[space]"} {this.state.pause? "PLAY/pause": "play/PAUSE"} </h1>
             <div style={inner}>
                 <div style={style}>{board}</div>
-                <div style={score}>{this.state.playerScore} {this.state.opponentScore}</div>
+                <div style={score}>{this.state.playerScore}</div>
+                <div style={dividerStyle}>  {divider} </div>
+                <div style={dividerStyle}>{this.state.opponentScore}</div>
+
             </div>
             <h3> {"press up and down to move"} </h3>
 
