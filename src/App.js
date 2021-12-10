@@ -1,6 +1,7 @@
 import React from 'react';
 import Box, { BACKGROUND, PLAYER, BALL } from './components/box.jsx';
 
+
 /* size */
 const ROW_SIZE = 10
 const COL_SIZE = 20
@@ -54,10 +55,10 @@ const InitialState = () => {
         ball: Math.round((ROW_SIZE * COL_SIZE)/2)+ ROW_SIZE,
         /* ball */
         ballSpeed: 100,
-        direction: -COL_SIZE,
-        delta: -1, // -1 means the ball is moving towards player 1 means towars opponent
+        deltaY: -COL_SIZE,
+        deltaX: -1, // -1 means the ball is moving towards player 1 means towards opponent
         pause: true,
-        /* for dumb Ai */
+        /* for dumb Ai */   
         opponentSpeed: 150,
         opponentDir: false,
         /* Score */
@@ -80,32 +81,32 @@ class App extends React.Component {
         const playerEdge = isUp? playerBoard[0]: playerBoard[PLAYER_BOARD_SIZE-1];
 
         if (!this.touchingEdge(playerEdge)) {
-            const delta = COL_SIZE * (isUp ? -1 : 1);
+            const deltaY =  (isUp ? -COL_SIZE : COL_SIZE);
             /* if ball touches the edge */
-            const newDir = (this.state.direction !== COL_SIZE ^ isUp) ? -this.state.direction: this.state.direction;
+            const newDir = (this.state.deltaY !== COL_SIZE ^ isUp) ? -this.state.deltaY: this.state.deltaY;
             
             if (!this.touchingEdge(this.state.ball)) {
                 switch (this.state.ball) {
-                    case playerEdge + delta -1:
+                    case playerEdge + deltaY -1:
                         this.setState({
-                            direction: newDir,
-                            delta: -1,
+                            deltaY: newDir,
+                            deltaX: -1,
                         })
                         break;
                     case playerEdge:
                         this.setState({
-                            direction: newDir,
+                            deltaY: newDir,
                         })
                         break;
-                    case playerEdge + delta + 1:
+                    case playerEdge + deltaY + 1:
                         this.setState({
-                            direction: newDir,
-                            delta: 1,
+                            deltaY: newDir,
+                            deltaX: 1,
                         })
                         break;
                 }
             }
-            return playerBoard.map(x=> x + delta);
+            return playerBoard.map(x=> x + deltaY);
         }      
         return false
     }
@@ -133,10 +134,10 @@ class App extends React.Component {
     touchingBoard = (pos) => {
         return (this.state.player.indexOf(pos) !== -1) || 
             (this.state.opponent.indexOf(pos) !== -1) ||
-            this.state[(this.state.delta === -1) ? "player":"opponent"].indexOf(pos+this.state.delta) !== -1;
+            this.state[(this.state.deltaX === -1) ? "player":"opponent"].indexOf(pos+this.state.deltaX) !== -1;
     }
 
-    isOver = (pos) => (this.state.delta === -1 && pos % COL_SIZE === 0) || (this.state.delta === 1 && (pos+1) % COL_SIZE === 0)
+    isScore = (pos) => (this.state.deltaX === -1 && pos % COL_SIZE === 0) || (this.state.deltaX === 1 && (pos+1) % COL_SIZE === 0)
 
     moveOpponent = () => {
         const movedPlayer = this.moveBoard(this.state.opponent, this.state.opponentDir); 
@@ -145,21 +146,21 @@ class App extends React.Component {
     }
 
     bounceBall = () => {
-        const newState = this.state.ball + this.state.direction+this.state.delta;
+        const newState = this.state.ball + this.state.deltaY+this.state.deltaX;
         if (this.touchingEdge(newState)) {
-            this.setState({direction: -this.state.direction})
+            this.setState({deltaY: -this.state.deltaY})
         } 
 
         if (this.touchingBoard(newState)) {
-            this.setState({delta: -this.state.delta}) 
+            this.setState({deltaX: -this.state.deltaX}) 
         } 
         
         /* updating board */
         this.setState({ball: newState})
 
         /* checking if loss or won */
-        if (this.isOver(newState)) {
-            if (this.state.delta !== -1) {
+        if (this.isScore(newState)) {
+            if (this.state.deltaX !== -1) {
                 /* player won */ 
                 this.setState({
                     playerScore: this.state.playerScore+1,
@@ -178,19 +179,17 @@ class App extends React.Component {
     } 
 
     keyInput = ({keyCode}) => {
-        
         switch (keyCode) {
-        case PLAYER_UP:
-        case PLAYER_DOWN:
-            const movedPlayer = this.moveBoard(this.state.player, keyCode===PLAYER_UP); 
-            if (movedPlayer) {
-                this.setState({player: movedPlayer, pause: false})
-            }
-            break;
-        case PAUSE:
-            this.setState({pause: true})
-            break;
-        default:
+            case PLAYER_UP:
+            case PLAYER_DOWN:
+                const movedPlayer = this.moveBoard(this.state.player, keyCode===PLAYER_UP); 
+                if (movedPlayer) {
+                    this.setState({player: movedPlayer, pause: false})
+                }
+                break;
+            case PAUSE:
+                this.setState({pause: true})
+                break;
         }
     }
 
@@ -202,17 +201,17 @@ class App extends React.Component {
             } else if (this.state.ball === pos) {
                 val = BALL;
             }
-            return <Box key={pos} name={val} />;
+            return <Box key={pos} k={pos} name={val} />;
         })
 
         return (
         <div style={outer}>
-            <h1> {"[space]"} {!this.state.pause? "PLAY/pause": "play/PAUSE"} </h1>
+            <h1> {"[space]"} {this.state.pause? "PLAY/pause": "play/PAUSE"} </h1>
             <div style={inner}>
                 <div style={style}>{board}</div>
                 <div style={score}>{this.state.playerScore} {this.state.opponentScore}</div>
             </div>
-            <h3> {"press UP and DOWN to move"} </h3>
+            <h3> {"press up and down to move"} </h3>
 
         </div>
         )
