@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ping-pong/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/ping-pong/static/js/main.d7eb9222.chunk.js",
-    "main.js.map": "/ping-pong/static/js/main.d7eb9222.chunk.js.map",
+    "main.js": "/ping-pong/static/js/main.172badc7.chunk.js",
+    "main.js.map": "/ping-pong/static/js/main.172badc7.chunk.js.map",
     "runtime-main.js": "/ping-pong/static/js/runtime-main.b5a50a74.js",
     "runtime-main.js.map": "/ping-pong/static/js/runtime-main.b5a50a74.js.map",
     "static/js/2.ce74096c.chunk.js": "/ping-pong/static/js/2.ce74096c.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.3a344492.chunk.js": "/ping-pong/static/js/3.3a344492.chunk.js",
     "static/js/3.3a344492.chunk.js.map": "/ping-pong/static/js/3.3a344492.chunk.js.map",
     "index.html": "/ping-pong/index.html",
-    "precache-manifest.e10d12865b914750d8af50ddfde402db.js": "/ping-pong/precache-manifest.e10d12865b914750d8af50ddfde402db.js",
+    "precache-manifest.79b9c87a8860aac8b687a2067f980760.js": "/ping-pong/precache-manifest.79b9c87a8860aac8b687a2067f980760.js",
     "service-worker.js": "/ping-pong/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/ping-pong/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.ce74096c.chunk.js.LICENSE.txt": "/ping-pong/static/js/2.ce74096c.chunk.js.LICENSE.txt"
@@ -19,6 +19,6 @@
     "static/js/runtime-main.b5a50a74.js",
     "static/js/2.ce74096c.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.d7eb9222.chunk.js"
+    "static/js/main.172badc7.chunk.js"
   ]
 }

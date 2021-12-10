@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ping-pong/precache-manifest.e10d12865b914750d8af50ddfde402db.js"
+  "/ping-pong/precache-manifest.79b9c87a8860aac8b687a2067f980760.js"
 );
 
 self.addEventListener('message', (event) => {
