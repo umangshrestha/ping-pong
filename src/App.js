@@ -1,9 +1,6 @@
 import React from 'react';
 import Box, { BACKGROUND, PLAYER, BALL } from './components/box.jsx';
 
-
-
-
 /* size */
 const ROW_SIZE = 10
 const COL_SIZE = 20
@@ -181,19 +178,13 @@ class App extends React.Component {
     } 
 
     keyInput = ({keyCode}) => {
-        if (this.state.pause) {
-            if (keyCode === PAUSE) {
-                this.setState({pause: false});
-            } 
-            return;
-        }
         
         switch (keyCode) {
         case PLAYER_UP:
         case PLAYER_DOWN:
             const movedPlayer = this.moveBoard(this.state.player, keyCode===PLAYER_UP); 
             if (movedPlayer) {
-                this.setState({player: movedPlayer})
+                this.setState({player: movedPlayer, pause: false})
             }
             break;
         case PAUSE:
@@ -211,7 +202,7 @@ class App extends React.Component {
             } else if (this.state.ball === pos) {
                 val = BALL;
             }
-            return <Box key={pos} k={pos} name={val} />;
+            return <Box key={pos} name={val} />;
         })
 
         return (
